@@ -30,20 +30,29 @@ function getHumanChoice() {
     }
 }
 
-function playRound(humanChoice, computerChoice) {
-    if (humanChoice === "rock" && computerChoice === "scissors" || humanChoice === "paper" && computerChoice === "rock" || humanChoice === "scissors" && computerChoice === "paper") {
-        humanScore++;
-        console.log("You won! " + humanChoice + " beats " + computerChoice + ".");
+function playGame() {
+    let humanScore = 0;
+    let computerScore = 0;
+
+    function playRound(humanChoice, computerChoice) {
+        if (humanChoice === "rock" && computerChoice === "scissors" || humanChoice === "paper" && computerChoice === "rock" || humanChoice === "scissors" && computerChoice === "paper") {
+            humanScore++;
+            console.log("You won! " + humanChoice + " beats " + computerChoice + ".");
+        }
+        else if (humanChoice === computerChoice) {
+            console.log("Tie!");
+        }
+        else {
+            computerScore++;
+            console.log("You lost! " + computerChoice + " beats " + humanChoice + ".");
+        }
+        return 0;
     }
-    else if (humanChoice === computerChoice) {
-        console.log("Tie!");
+    for(let i = 0; i < 5; i++) {
+        console.log(playRound(getHumanChoice(), getComputerChoice()));
     }
-    else {
-        computerScore++;
-        console.log("You lost! " + computerChoice + " beats " + humanChoice + ".");
-    }
-    return 0;
+    console.log("You: " + humanScore);
+    console.log("Bot: " + computerScore);
 }
 
-console.log(playRound(getHumanChoice(), getComputerChoice()));
-
+console.log(playGame());
